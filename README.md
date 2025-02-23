@@ -98,7 +98,7 @@ This is a Task Management application built with React + TypeScript (frontend), 
    The frontend will run on http://localhost:3001
 
 5. Salary Expections:
-   1000/per month
+   1,000/month
 
 ## API Endpoints
 
