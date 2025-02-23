@@ -34,14 +34,14 @@ This is a Task Management application built with React + TypeScript (frontend), 
 2. Create a new database:
    ```
    psql
-   CREATE DATABASE task_management_db;
+   CREATE DATABASE task_db;
    ```
 
 ### Backend Setup
 
 1. Clone the repository:
    ```
-   git clone https://github.com/yourusername/task-management.git
+   git clone https://github.com/suprcp/TaskManagement.git
    ```
 
 2. Navigate to the backend directory:
@@ -95,7 +95,7 @@ This is a Task Management application built with React + TypeScript (frontend), 
    ```
    npm start
    ```
-   The frontend will run on http://localhost:3000 (or another port if 3000 is occupied).
+   The frontend will run on http://localhost:3001
 
 ## API Endpoints
 
