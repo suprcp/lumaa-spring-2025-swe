@@ -114,13 +114,9 @@ This project uses a PostgreSQL database with the following main tables:
 
 ## Testing Notes
 
-- The project currently relies on manual testing.
+- The project currently relies on manual testing by using Postman for backend endpoints and through the UI in the browser for the frontend.
+- The tests focused on verifying core functionalities: user registration, login, and task CRUD operations, as well as ensuring route protection.
 - Future development plans include adding unit tests and integration tests.
-- Suggested testing areas:
-  - User authentication flow
-  - CRUD operations for tasks
-  - API endpoint responses
-  - Frontend component rendering and state management
 
 ## Contributing
 
