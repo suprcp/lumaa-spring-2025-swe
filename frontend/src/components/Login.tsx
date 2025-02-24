@@ -25,21 +25,24 @@ const Login = ({ setToken }: { setToken: (token: string) => void }) => {
 
       const data = await response.json();
 
-      if (response.ok) {
-        if (isRegister) {
-          setIsRegister(false);
-          setError('Registration successful. Please log in.');
-        } else if (data.access_token) {
-          setToken(data.access_token);
-          localStorage.setItem('token', data.access_token);
-        }
-      } else {
-        if (response.status === 401) {
-          setError('Account does not exist. Please register first.');
-        } else {
-          setError(data.message || 'Operation failed');
-        }
-      }
+   if (response.ok) {
+           if (isRegister) {
+             setIsRegister(false);
+             setError('Registration successful. Please log in.');
+           } else if (data.access_token) {
+             setToken(data.access_token);
+             localStorage.setItem('token', data.access_token);
+           }
+         } else {
+           // Show error messages based on error type from backend
+           if (data.error === 'invalid_password') {
+             setError('Incorrect password. Please try again.');
+           } else if (data.error === 'user_not_found') {
+             setError('User does not exist. Please register first.');
+           } else {
+             setError(data.message || 'Operation failed');
+           }
+         }
     } catch (err) {
       setError('Network error. Please try again.');
       console.error('Login/Register error:', err);

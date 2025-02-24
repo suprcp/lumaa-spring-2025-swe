@@ -13,7 +13,7 @@ export class UsersService {
 
   async findOne(username: string): Promise<User | null> {
     const user = await this.usersRepository.findOne({ where: { username } });
-    console.log(`findOne('${username}') result:`, user); // 确保 user 变量是正确的
+    console.log(`findOne('${username}') result:`, user);
     return user;
   }
 

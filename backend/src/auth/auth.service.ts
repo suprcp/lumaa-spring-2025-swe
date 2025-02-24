@@ -17,10 +17,13 @@ export class AuthService {
 
     const user = await this.usersService.findOne(username);
 
-    if (!user) {
-      console.log(`User not found: ${username}`);
-      return null;
-    }
+   if (!user) {
+         console.log(`User not found: ${username}`);
+         throw new UnauthorizedException({
+           error: 'user_not_found',
+           message: 'Account does not exist'
+         });
+       }
 
     console.log('Stored hashed password:', user.password);
     console.log('Stored hashed password length:', user.password.length);
@@ -31,9 +34,12 @@ export class AuthService {
       console.log('Password validation result:', isPasswordValid);
 
       if (!isPasswordValid) {
-        console.log(`Invalid password for user: ${username}`);
-        return null;
-      }
+              console.log(`Invalid password for user: ${username}`);
+              throw new UnauthorizedException({
+                error: 'invalid_password',
+                message: 'Incorrect password'
+              });
+            }
 
       const { password: _, ...result } = user;
       return result;

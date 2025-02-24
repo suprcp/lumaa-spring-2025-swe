@@ -131,7 +131,7 @@ const TaskItem: React.FC<TaskItemProps> = ({
   return (
     <li className="task-item">
       <span className="task-content">
-        {title} - {description} {isComplete ? '✅' : '❌'}
+        {title}  {description} {isComplete && '✅'}
       </span>
       <div className="task-actions">
         <button onClick={() => setIsEditing(true)}>Edit</button>
