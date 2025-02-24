@@ -33,8 +33,8 @@ This is a Task Management application built with React + TypeScript (frontend), 
 1. Install PostgreSQL following the [official documentation](https://www.postgresql.org/download/).
 2. Create a new database:
    ```
-   psql
-   CREATE DATABASE task_db;
+   psql -U postgres template1;
+   CREATE DATABASE task_management_db;
    ```
 
 ### Backend Setup
@@ -57,17 +57,18 @@ This is a Task Management application built with React + TypeScript (frontend), 
 4. Set up environment variables:
    Create a `.env` file in the backend directory with the following content:
    ```
-   DATABASE_URL=postgresql://username:password@localhost:5432/task_management_db
-   JWT_SECRET=your_jwt_secret_key
+   DATABASE_HOST=localhost
+   DATABASE_PORT=5432
+   DATABASE_USERNAME=postgres
+   DATABASE_PASSWORD=postgres
+   DATABASE_NAME=task_management_db
+   DATABASE_URL=postgresql://$DATABASE_USERNAME:$DATABASE_PASSWORD@localhost:$DATABASE_PORT/$DATABASE_NAME
+   JWT_SECRET=task_management
+   PORT=3002
    ```
    Replace `username` and `password` with your PostgreSQL credentials.
 
-5. Run database migrations:
-   ```
-   npm run migration:run
-   ```
-
-6. Start the backend server:
+5. Start the backend server:
    ```
    npm run start:dev
    ```
@@ -88,7 +89,8 @@ This is a Task Management application built with React + TypeScript (frontend), 
 3. Set up environment variables:
    Create a `.env` file in the frontend directory with:
    ```
-   REACT_APP_API_URL=http://localhost:3000
+   REACT_APP_API_URL=http://localhost:3002
+   PORT=3001
    ```
 
 4. Start the frontend application:
@@ -98,7 +100,7 @@ This is a Task Management application built with React + TypeScript (frontend), 
    The frontend will run on http://localhost:3001
 
 5. Salary Expections:
-   1,000/month
+   $3,000/month
 
 ## API Endpoints
 

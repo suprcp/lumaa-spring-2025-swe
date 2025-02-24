@@ -1,5 +1,8 @@
 import React, { useState } from 'react';
 
+// const REACT_APP_API_URL = 'http://localhost:3002';
+const REACT_APP_API_URL = process.env.REACT_APP_API_URL;
+
 interface TaskItemProps {
   id: number;
   title: string;
@@ -28,7 +31,7 @@ const TaskItem: React.FC<TaskItemProps> = ({
 
     try {
       const token = localStorage.getItem('token');
-      const response = await fetch(`http://localhost:3000/tasks/${id}`, {
+      const response = await fetch(`${REACT_APP_API_URL}/tasks/${id}`, {
         method: 'PUT',
         headers: {
           'Content-Type': 'application/json',
@@ -57,7 +60,7 @@ const TaskItem: React.FC<TaskItemProps> = ({
   const handleToggleComplete = async () => {
     try {
       const token = localStorage.getItem('token');
-      const response = await fetch(`http://localhost:3000/tasks/${id}`, {
+      const response = await fetch(`${REACT_APP_API_URL}/tasks/${id}`, {
         method: 'PUT',
         headers: {
           'Content-Type': 'application/json',
@@ -79,7 +82,7 @@ const TaskItem: React.FC<TaskItemProps> = ({
   const handleDelete = async () => {
     try {
       const token = localStorage.getItem('token');
-      const response = await fetch(`http://localhost:3000/tasks/${id}`, {
+      const response = await fetch(`${REACT_APP_API_URL}/tasks/${id}`, {
         method: 'DELETE',
         headers: {
           'Authorization': `Bearer ${token}`

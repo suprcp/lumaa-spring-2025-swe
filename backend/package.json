@@ -13,7 +13,7 @@
     "build": "tsc",
     "format": "prettier --write \"src/**/*.ts\" \"test/**/*.ts\"",
     "start": "npm run build && node dist/src/main.js",
-    "start:dev": "nest start --watch",
+    "start:dev": "rm -rf dist && npm run build && nest start --watch",
     "start:debug": "npm run build && nest start --debug --watch",
     "start:prod": "npm run build && node dist/src/main.js",
     "main": "dist/src/main.js",

@@ -1,9 +1,9 @@
 import axios from 'axios';
 
-const API_BASE_URL = "http://localhost:3000";
+const REACT_APP_API_URL = process.env.REACT_APP_API_URL;
 
 const api = axios.create({
-  baseURL: API_BASE_URL,
+  baseURL: REACT_APP_API_URL,
 });
 
 api.interceptors.request.use((config) => {
@@ -16,7 +16,7 @@ api.interceptors.request.use((config) => {
 
 export const getTasks = async () => {
   try {
-    const response = await api.get('/tasks');
+    const response = await api.get(`${REACT_APP_API_URL}/tasks`);
     return response.data;
   } catch (error) {
     console.error('Get tasks error:', error);
@@ -26,7 +26,7 @@ export const getTasks = async () => {
 
 export const createTask = async (task: { title: string; description: string }) => {
   try {
-    const response = await api.post('/tasks', task);
+    const response = await api.post(`${REACT_APP_API_URL}/tasks`, task);
     return response.data;
   } catch (error) {
     console.error('Create task error:', error);
@@ -36,7 +36,7 @@ export const createTask = async (task: { title: string; description: string }) =
 
 export const updateTask = async (id: number, update: { isComplete: boolean }) => {
   try {
-    const response = await api.put(`/tasks/${id}`, update);
+    const response = await api.put(`${REACT_APP_API_URL}/tasks/${id}`, update);
     return response.data;
   } catch (error) {
     console.error('Update task error:', error);
@@ -46,7 +46,7 @@ export const updateTask = async (id: number, update: { isComplete: boolean }) =>
 
 export const deleteTask = async (id: number) => {
   try {
-    await api.delete(`/tasks/${id}`);
+    await api.delete(`${REACT_APP_API_URL}/tasks/${id}`);
   } catch (error) {
     console.error('Delete task error:', error);
     throw error;

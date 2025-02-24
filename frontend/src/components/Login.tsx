@@ -1,5 +1,7 @@
 import React, { useState } from 'react';
 
+const REACT_APP_API_URL = process.env.REACT_APP_API_URL;
+
 const Login = ({ setToken }: { setToken: (token: string) => void }) => {
   const [username, setUsername] = useState('');
   const [password, setPassword] = useState('');
@@ -12,8 +14,8 @@ const Login = ({ setToken }: { setToken: (token: string) => void }) => {
 
     try {
       const url = isRegister
-        ? 'http://localhost:3000/auth/register'
-        : 'http://localhost:3000/auth/login';
+        ? `${REACT_APP_API_URL}/auth/register`
+        : `${REACT_APP_API_URL}/auth/login`;
 
       const response = await fetch(url, {
         method: 'POST',
@@ -25,11 +27,9 @@ const Login = ({ setToken }: { setToken: (token: string) => void }) => {
 
       if (response.ok) {
         if (isRegister) {
-          // 注册成功，切换到登录
           setIsRegister(false);
           setError('Registration successful. Please log in.');
         } else if (data.access_token) {
-          // 登录成功
           setToken(data.access_token);
           localStorage.setItem('token', data.access_token);
         }
